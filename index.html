@@ -5,26 +5,20 @@
   <title>Feliz Día Pa</title>
 </head>
 <body>
-  <!-- Reproductor invisible -->
-  <audio id="player" autoplay loop muted playsinline>
+  <audio id="player" autoplay loop playsinline>
     <source src="felizdiapa.ogg" type="audio/ogg">
     Tu navegador no soporta OGG.
   </audio>
 
   <script>
     const player = document.getElementById('player');
-    // Arranca en mute para que no lo bloquee
-    player.play().then(() => {
-      // Intento quitar mute automáticamente
-      player.muted = false;
-    }).catch(() => {
-      // Si falla, queda en mute pero sigue en loop
+    // Intento reproducir con sonido
+    player.muted = false;
+    player.play().catch(() => {
+      // Si el navegador bloquea, arranca en mute
       player.muted = true;
       player.play();
     });
   </script>
-
-  <!-- Botón opcional para habilitar sonido manualmente -->
-  <button onclick="player.muted=false">🔊 Activar sonido</button>
 </body>
 </html>
